@@ -8,7 +8,7 @@ import { ErrorMessage } from "@hookform/error-message";
 import { Button } from 'primereact/button';
 
 const AddProductForm = () => {
-  const [show, setShow] = useState(true)
+  const [show, setShow] = useState(false)
   const { register, handleSubmit, control, watch, formState: { errors } } = useForm();
   const { fields, append, remove } = useFieldArray({
     control,

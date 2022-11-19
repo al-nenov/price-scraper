@@ -3,6 +3,13 @@ const getLightTheme = () => {
     maintainAspectRatio: false,
     aspectRatio: .6,
     plugins: {
+      title: {
+        display: true,
+        text: 'Price Log',
+        font: {
+          size: 16
+        }
+      },
       legend: {
         labels: {
           color: '#495057'
@@ -32,7 +39,7 @@ const getLightTheme = () => {
   let multiAxisOptions = {
     stacked: false,
     maintainAspectRatio: false,
-    aspectRatio: .6,
+    aspectRatio: 1,
     plugins: {
       legend: {
         labels: {
@@ -57,18 +64,6 @@ const getLightTheme = () => {
           color: '#495057'
         },
         grid: {
-          color: '#ebedef'
-        }
-      },
-      y1: {
-        type: 'linear',
-        display: true,
-        position: 'right',
-        ticks: {
-          color: '#495057'
-        },
-        grid: {
-          drawOnChartArea: false,
           color: '#ebedef'
         }
       }

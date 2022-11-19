@@ -11,8 +11,7 @@ const ProductPage = ({ product, id }) => {
     <>
       <ProductVendorLinksList product={product} />
       <p>Product {product.id}</p>
-      <h3>draw price movement</h3>
-      <PriceChart />
+      <PriceChart priceLog={product.priceLog} />
       <AddProductForm />
     </>
   )

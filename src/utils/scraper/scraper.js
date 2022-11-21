@@ -12,7 +12,7 @@ export const scrapeProductPrices = async () => {
       ...product,
     }
 
-    const updatedLinks = await Promise.all(product?.links?.map(async (link, i) => {
+    const updatedLinks = await Promise.all(product.links.map(async (link, i) => {
       try {
         const { data } = await axios.get('api/getProductInfo', {
           params: link
@@ -27,6 +27,7 @@ export const scrapeProductPrices = async () => {
         updatedProduct.lowestPrice = Math.min(updatedProduct.lowestPrice, data.price)
         updatedProduct.name = product.name || data.name || ''
         updatedProduct.image = product.image || data.image || ''
+       
         return {
           ...link,
           price: data.price,

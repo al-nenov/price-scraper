@@ -10,6 +10,10 @@ const MenuBar = () => {
       command: () => router.push('/productlist')
     },
     {
+      label: 'Vendors',
+      command: () => router.push('/vendors')
+    },
+    {
       label: 'Test Page',
       command: () => router.push('/test')
     }

@@ -8,7 +8,7 @@ export default async function productInfoScraper(req, res) {
     // TODO: Handle validations - no query
   const product = req.query
   const { domain } = getVendor(product.url)
-  const selectors = getXpath(domain)
+  const selectors = await getXpath(domain)
   const xpath = {
     price: product.xpath || selectors?.price,
     name: product.name || selectors?.name,

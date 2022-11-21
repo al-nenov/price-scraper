@@ -1,0 +1,54 @@
+.productListTable .tableHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.productListTable .productImage {
+  width: 100px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+
+.nameColumn {
+  width: 50%;
+  font-weight: 600;
+}
+
+.imageColumn {
+  display: flex;
+  img {
+    margin: auto;
+  }
+}
+
+@media screen and (max-width: 960px) {
+  .productListTable .tableHeader {
+      align-items: flex-start;
+  }
+}
+
+.productListTable [class~="p-dialog"] .productImage {
+  width: 150px;
+  margin: 0 auto 2rem auto;
+  display: block;
+}
+.productListTable [class~="confirmation-content"] {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+@media screen and (max-width: 960px) {
+  .productListTable [class~="p-toolbar"] {
+      flex-wrap: wrap;
+  }
+  .productListTable [class~="dp-toolbar"] [class~="p-button"] {
+      margin-bottom: 0.25rem;
+  }
+  .productListTable .tableHeader {
+      flex-direction: column;
+  }
+  .productListTable .tableHeader [class~="p-input-icon-left"], .productListTable .tableHeader input {
+      width: 100%;
+  }
+}
+              

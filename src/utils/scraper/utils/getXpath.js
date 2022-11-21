@@ -1,9 +1,9 @@
-import { VENDORS_XPATHS } from "constants/vendors"
+import { getVendorByName } from "utils/firebase/firebase"
 
-export const getXpath = (domain) => {
+export const getXpath = async (domain) => {
   if (!domain || typeof domain !== 'string') {
     return
   }
-
-  return  VENDORS_XPATHS[domain]
+  const vendor = await getVendorByName(domain)
+  return  vendor
 }

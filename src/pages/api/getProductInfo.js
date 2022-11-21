@@ -5,9 +5,10 @@ import { getXpath } from 'utils/scraper/utils/getXpath';
 const puppeteer = require('puppeteer');
 
 export default async function productInfoScraper(req, res) {
+    // TODO: Handle validations - no query
   const product = req.query
   const { domain } = getVendor(product.url)
-  const selectors = getXpath(domain)
+  const selectors = await getXpath(domain)
   const xpath = {
     price: product.xpath || selectors?.price,
     name: product.name || selectors?.name,
@@ -37,21 +38,28 @@ export default async function productInfoScraper(req, res) {
     throw error;
   }
 
-  const getElText = async (selector) => (
-    await page.$x(selector).then(async (el) => await page.evaluate(el => el.textContent, el[0]))
-  )
-
-  const getElHtml = async (selector, type) => {
-    const [el] = await page.$x(selector)
-    const propertyType = await el.getProperty(type)
-    const image = await propertyType.jsonValue()
-
-    return image
+  const getElText = async (selector) => {
+    try {
+      const textContent = await page.$x(selector).then(async (el) => await page.evaluate(el => el.textContent, el[0]))
+      return textContent
+    } catch (e) {
+      console.log('Error while getting element ', e)
+      return ''
+    }
   }
+
+  // const getElHtml = async (selector, type) => {
+  //   const [el] = await page.$x(selector)
+  //   if (!el) return
+  //   const propertyType = await el.getProperty(type)
+  //   const image = await propertyType.jsonValue()
+
+  //   return image
+  // }
 
   const price = xpath.price && await getElText(xpath.price)
   const name = xpath.name && await getElText(xpath.name)
-  const image = xpath.image && await getElHtml(xpath.image, 'src')
+  const image = xpath.image && await getElText(xpath.image, 'src')
   // TODO: Pass value for stock
 
   if (price) {

@@ -7,6 +7,7 @@ import styles from './ProductVendorLinksList.module.scss'
 import { getVendor } from 'utils/scraper/utils/getVendor'
 import { Tooltip } from 'primereact/tooltip';
 import { Button } from 'primereact/button'
+import AddItemToProductForm from 'components/Forms/AddItemToProductForm'
 
 const ProductVendorLinksList = ({ product }) => {
   const itemTemplate = (item) => (
@@ -30,15 +31,25 @@ const ProductVendorLinksList = ({ product }) => {
     </Link>
   )
 
-  
+  const header =
+    <div className={styles.tableHeader}>
+      {product.name}
+      <Button icon="pi pi-plus" className="p-button-rounded p-button-success" aria-label="Add product" tooltip='Add product vendor' tooltipOptions={{ position: 'top' }} />
+    </div>
+
+
+
 
   return (
-    <DataTable header={product.name} value={product.links} itemTemplate={itemTemplate}>
-      <Column field="url" header="Vendor" body={vendorBodyTemplate} />
-      <Column field="price" header="Price" />
-      <Column field="priceLog" header="Min Price" body={(rowData) => getMinPrice(rowData.priceLog).price} />
-      <Column field="priceLog" header="Max Price" body={(rowData) => <Button tooltip="Purple" tooltipOptions={{ className: 'purple-tooltip', position: 'top' }}>{getMaxPrice(rowData.priceLog).price}</Button>} />
-    </DataTable>
+    <>
+      <DataTable header={header} value={product.links} itemTemplate={itemTemplate}>
+        <Column field="url" header="Vendor" body={vendorBodyTemplate} />
+        <Column field="price" header="Price" />
+        <Column field="priceLog" header="Min Price" body={(rowData) => getMinPrice(rowData.priceLog).price} />
+        <Column field="priceLog" header="Max Price" body={(rowData) => <Button tooltip="Purple" tooltipOptions={{ className: 'purple-tooltip', position: 'top' }}>{getMaxPrice(rowData.priceLog).price}</Button>} />
+      </DataTable>
+      <AddItemToProductForm product={product} />
+    </>
   )
 }
 

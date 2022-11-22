@@ -35,7 +35,6 @@ export const saveProduct = (product) => {
   } catch (e) { throw('Add product failed with error -> ', e) }
 }
 
-export const editProduct = () => { }
 export const removeProduct = () => { }
 
 

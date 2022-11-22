@@ -3,6 +3,7 @@ import { InputText } from 'primereact/inputtext'
 import { Button } from 'primereact/button';
 import { classNames } from 'primereact/utils';
 import { addVendor } from 'utils/firebase/firebase';
+import { vendorExist } from 'utils/scraper/utils/vendorExist';
 
 const AddVendorPage = () => {
   const defaultValues = {
@@ -37,9 +38,15 @@ const AddVendorPage = () => {
 
           <Controller
             name="vendorUrl"
-            control={control}
+            control={control}            
             rules={
               {
+                validate: {
+                  checkVendorExist: async (v) => {
+                    const exist = await vendorExist(v)
+                    return exist === false || 'This vendor already exist'
+                  }
+                },
                 required: 'Vendor URL is required.',
                 pattern: {
                   value: /[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)?/gi,
@@ -67,7 +74,7 @@ const AddVendorPage = () => {
               }
             }
             render={({ field, fieldState }) => (
-              <InputText id={field.price} {...field} autoFocus className={classNames({ 'p-invalid': fieldState.error })} />
+              <InputText id={field.price} {...field} className={classNames({ 'p-invalid': fieldState.error })} />
             )} />
           <label htmlFor="price" className={classNames({ 'p-error': errors.price })}>Price (xpath)*</label>
         </span>
@@ -81,7 +88,7 @@ const AddVendorPage = () => {
             name="image"
             control={control}
             render={({ field, fieldState }) => (
-              <InputText id={field.image} {...field} autoFocus className={classNames({ 'p-invalid': fieldState.error })} />
+              <InputText id={field.image} {...field} className={classNames({ 'p-invalid': fieldState.error })} />
             )} />
           <label htmlFor="image" className={classNames({ 'p-error': errors.image })}>Image (xpath)</label>
         </span>
@@ -95,7 +102,7 @@ const AddVendorPage = () => {
             name="name"
             control={control}
             render={({ field, fieldState }) => (
-              <InputText id={field.name} {...field} autoFocus className={classNames({ 'p-invalid': fieldState.error })} />
+              <InputText id={field.name} {...field}  className={classNames({ 'p-invalid': fieldState.error })} />
             )} />
           <label htmlFor="name" className={classNames({ 'p-error': errors.name })}>Name (xpath)</label>
         </span>
@@ -111,7 +118,7 @@ const AddVendorPage = () => {
             name="stock"
             control={control}
             render={({ field, fieldState }) => (
-              <InputText id={field.stock} {...field} autoFocus className={classNames({ 'p-invalid': fieldState.error })} />
+              <InputText id={field.stock} {...field} className={classNames({ 'p-invalid': fieldState.error })} />
             )} />
           <label htmlFor="stock" className={classNames({ 'p-error': errors.stock })}>Stock (xpath)</label>
         </span>

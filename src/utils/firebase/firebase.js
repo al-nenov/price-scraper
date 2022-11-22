@@ -65,3 +65,9 @@ export const addVendor = async (data) => {
     })
   } catch (e) { throw('Add vendor failed with error -> ', e) }
 }
+
+export const vendorExistsInDb = async (id) => {
+  const docRef = doc(dbInstance('vendors'), id)
+  const docSnapshot = await getDoc(docRef)
+  return docSnapshot.exists()
+}

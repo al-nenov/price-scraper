@@ -1,5 +1,28 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+## Roadmap
+
+- [x] Firebase firestore holding product info
+- [x] Firebase firestore holding vendor info
+- [x] List vendors
+- [x] Add vendors
+- [ ] Edit Vendors
+- [ ] Delete vendors
+- [x] Test vendors xpath
+- [ ] Display vendors data
+- [x] List products in a table
+- [x] View product
+- [x] Display product min price movements in a chart
+- [x] Add new vendor link to product
+- [ ] Edit product
+- [ ] Delete product
+- [ ] Get notified when product price changes
+- [ ] Scrape single product prices
+- [x] Scrape all product prices
+- [ ] Add a cron job for product scraping
+- [ ] Create custom product list
+- [ ] Scrape stock status
+
 ## Getting Started
 
 First, run the development server:

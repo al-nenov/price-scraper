@@ -35,7 +35,6 @@ export const saveProduct = (product) => {
   } catch (e) { throw('Add product failed with error -> ', e) }
 }
 
-export const editProduct = () => { }
 export const removeProduct = () => { }
 
 
@@ -64,4 +63,10 @@ export const addVendor = async (data) => {
       ...data,
     })
   } catch (e) { throw('Add vendor failed with error -> ', e) }
+}
+
+export const vendorExistsInDb = async (id) => {
+  const docRef = doc(dbInstance('vendors'), id)
+  const docSnapshot = await getDoc(docRef)
+  return docSnapshot.exists()
 }

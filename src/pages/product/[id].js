@@ -10,7 +10,7 @@ const ProductPage = ({ product, id }) => {
   return (
     <>
     <picture>
-      <img src={product.image} alt={product.name} width={250} height={'auto'} />
+      <img src={product.image} alt={product.name} width={'auto'} height={250} />
     </picture>
       <ProductVendorLinksList product={product} />
       <p>Product {product.id}</p>

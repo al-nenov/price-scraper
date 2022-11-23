@@ -12,8 +12,8 @@ export default async function productInfoScraper(req, res) {
   const xpath = {
     price: product.xpath || selectors?.price,
     name: product.name || selectors?.name,
-    image: selectors?.image,
-    stock: selectors?.stock,
+    image: product.image || selectors?.image,
+    stock: product.stock || selectors?.stock,
   }
 
   const browser = await puppeteer.launch({

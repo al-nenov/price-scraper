@@ -4,7 +4,7 @@ export const registerPriceMovement = (log, oldPrice, price) => {
     date: new Date().getTime()
   }]
 
-  if (oldPrice !== price) {
+  if (oldPrice > 0 && oldPrice !== price) {
     priceLog.push({
       price,
       date: new Date().getTime()

@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
 import { Button } from "primereact/button";
+import { Card } from "primereact/card";
 import { getVendors } from "../../utils/firebase/firebase";
 
 
@@ -9,8 +10,11 @@ const VendorsListPage = ({ vendors }) => {
 
   return (
     <>
-      <Button onClick={() => {router.push('/addvendor')}}>Add vendor</Button>
-      {vendors.map((vendor) => <h4 key={vendor.id}>{vendor.id}</h4>)}
+      <Button onClick={() => { router.push('/addvendor') }}>Add vendor</Button>
+      <div className="flex">
+        {vendors.map((vendor) => <Card key={vendor.id}><h4 >{vendor.id}</h4></Card>)}
+
+      </div>
     </>
   )
 }

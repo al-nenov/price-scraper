@@ -48,7 +48,9 @@ const ProductVendorLinksList = ({ product }) => {
         <Column field="priceLog" header="Min Price" body={(rowData) => getMinPrice(rowData.priceLog).price} />
         <Column field="priceLog" header="Max Price" body={(rowData) => <Button tooltip="Purple" tooltipOptions={{ className: 'purple-tooltip', position: 'top' }}>{getMaxPrice(rowData.priceLog).price}</Button>} />
       </DataTable>
-      <AddItemToProductForm product={product} />
+      <div className='mt-3'>
+        <AddItemToProductForm product={product} />
+      </div>
     </>
   )
 }

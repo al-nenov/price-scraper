@@ -77,7 +77,7 @@ const AddItemToProductForm = ({ product }) => {
           </span>
           {getFormErrorMessage('vendorUrl')}
         </div>
-        <Button label="Submit" icon="pi pi-check" type="submit" />
+        <Button label="Add vendor" icon="pi pi-check" type="submit" />
       </form>
     </>
   )
